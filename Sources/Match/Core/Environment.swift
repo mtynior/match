@@ -9,12 +9,17 @@ import Foundation
 
 /// Represents an Environment
 public protocol EnvironmentRepresentable: AnyObject {
+    /// Environment Identifier
+    var id: String { get }
+    
     /// Result reporter used by the library to output the results of the evaluations.
     var resultReporter: ResultReporter { get set }
 }
 
 /// Environment used by the Matchers
 public final class Environment: EnvironmentRepresentable {
+    public let id: String
+    
     public var resultReporter: ResultReporter
     
     /// Global environment used by all Matchers.
@@ -36,8 +41,10 @@ public final class Environment: EnvironmentRepresentable {
     /// Creates an ``Environment`` with a specific result reporter. If the ``resultReporter`` is not provided, the ``XCTestReporter`` will be used by default.
     ///
     /// - Parameters:
+    ///   - id: Unique identifier of the current environment
     ///   - resultReporter: The ``ResultReporter`` used to output evaluation results.
-    public init(resultReporter: ResultReporter = XCTestReporter()) {
+    public init(id: String = UUID().uuidString, resultReporter: ResultReporter = XCTestReporter()) {
+        self.id = id
         self.resultReporter = resultReporter
     }
 }

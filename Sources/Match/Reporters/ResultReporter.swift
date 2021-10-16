@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Describes the Reporters that output the evaluation results
+/// Describes a Reporter that outputs the evaluation results
 public protocol ResultReporter {
     /// Reports the evaluation result.
     ///

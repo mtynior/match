@@ -16,17 +16,13 @@ public struct EvaluationContext {
     /// Name of the matcher
     public let matcherName: String
     
-    /// The file where evaluation was triggered.
-    public let file: String
-    
-    /// The line number where the evaluation was triggered.
-    public let line: UInt
-    
-    /// Creates a context with specific test case, name of the matcher, file, and line number
-    public init(testCase: XCTestCase?, matcherName: String, file: String, line: UInt) {
+    /// The location in the Source Code where evaluation was triggered.
+    public let sourceCodeLocation: SourceCodeLocation
+
+    /// Creates a context with specific test case, name of the matcher, and location in the Source Code.
+    public init(testCase: XCTestCase?, matcherName: String, sourceCodeLocation: SourceCodeLocation) {
         self.testCase = testCase
         self.matcherName = matcherName
-        self.file = file
-        self.line = line
+        self.sourceCodeLocation = sourceCodeLocation
     }
 }
