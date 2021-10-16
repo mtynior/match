@@ -1,3 +1,3 @@
 # Match
 
-A description of this package.
+A simple and lightweight matching library for XCTest framework.
