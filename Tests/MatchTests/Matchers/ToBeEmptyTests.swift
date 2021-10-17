@@ -74,49 +74,49 @@ final class ToBeEmptyTests: XCTestCase {
         XCTAssertEqual(
             makeMatcher(actualValue: "", evaluationType: .negated).evaluate().evaluationStatus,
             .failed,
-            "ToBeEmpty should be evaluated as `failed` for an empty String"
+            "Negated ToBeEmpty should be evaluated as `failed` for an empty String"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: "Darth Vader", evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "ToBeEmpty should be evaluated as `passed` for a non empty String"
+            "Negated ToBeEmpty should be evaluated as `passed` for a non empty String"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: [Int](), evaluationType: .negated).evaluate().evaluationStatus,
             .failed,
-            "ToBeEmpty should be evaluated as `failed` for an empty Array"
+            "Negated ToBeEmpty should be evaluated as `failed` for an empty Array"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: [1, 2, 3], evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "ToBeEmpty should be evaluated as `passed` for a non empty Array"
+            "Negated ToBeEmpty should be evaluated as `passed` for a non empty Array"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: Set<Int>(), evaluationType: .negated).evaluate().evaluationStatus,
             .failed,
-            "ToBeEmpty should be evaluated as `failed` for an empty Set"
+            "Negated ToBeEmpty should be evaluated as `failed` for an empty Set"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: Set<Int>([1, 2, 3]), evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "ToBeEmpty should be evaluated as `passed` for a non empty Set"
+            "Negated ToBeEmpty should be evaluated as `passed` for a non empty Set"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: [String: Int](), evaluationType: .negated).evaluate().evaluationStatus,
             .failed,
-            "ToBeEmpty should be evaluated as `failed` for an empty Dictionary"
+            "Negated ToBeEmpty should be evaluated as `failed` for an empty Dictionary"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: ["1": 1, "2": 2], evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "ToBeEmpty should be evaluated as `passed` for a non empty Dictionary"
+            "Negated ToBeEmpty should be evaluated as `passed` for a non empty Dictionary"
         )
     }
     
