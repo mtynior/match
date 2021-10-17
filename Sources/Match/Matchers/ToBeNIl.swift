@@ -4,6 +4,7 @@
 //
 //  Created by Michal on 17/10/2021.
 //
+
 /// Tests whether the value is `nil`.
 ///
 /// ```swift

@@ -1,5 +1,5 @@
 //
-//  ToBeEqual.swift
+//  ToBeGreaterThan.swift
 //  Match
 //
 //  Created by Michal on 17/10/2021.
@@ -7,24 +7,17 @@
 
 import Foundation
 
-/// Tests whether the two values are equal.
+/// Tests whether the actual value is greater than expected value.
 ///
-/// This matcher works with any type that conforms to the `Equatable` protocol:
+/// This matcher works with any type that conforms to the `Comparable` protocol:
 /// ```swift
-/// expect(2).toBeEqual(5) // Fails
-/// expect(2).toBeEqual(2) // Passes
-///
-/// expect("Anakin").toBeEqual("Vader") // Fails
-/// expect("Anakin").toBeEqual("Anakin") // Passes
-///
-/// expect([1, 2, 3]).toBeEqual([3, 2, 1]) // Fails
-/// expect([1, 2, 3]).toBeEqual([1, 2, 3]) // Passes
+/// expect(2).ToBeGreaterThan(0) // Passes
+/// expect(2).toBeGreaterThan(5) // Fails
+/// expect(2).toBeGreaterThan(2) // Fails
 /// ```
 ///
-///  When comparing `FloatingPoint` numbers use the ``Expectation/toBeCloseTo(_:within:file:line:)`` instead!
-///
-public struct ToBeEqual<ResultType: Equatable>: Matcher {
-    public let matcherName: String = "toBeEqual"
+public struct ToBeGreaterThan<ResultType: Comparable>: Matcher {
+    public let matcherName: String = "toBeGreaterThan"
     
     public let expectation: Expectation<ResultType>
     
@@ -50,15 +43,15 @@ public struct ToBeEqual<ResultType: Equatable>: Matcher {
             return EvaluationResult(message: "Could not evaluate the expression", evaluationStatus: .failed, evaluationContext: evaluationContext)
         }
         
-        let isEqual = actualValue == expectedValue
+        let isGreater = actualValue > expectedValue
         
-        let evaluationStatus = EvaluationStatus(boolValue: isEqual, evaluationType: expectation.evaluationType)
+        let evaluationStatus = EvaluationStatus(boolValue: isGreater, evaluationType: expectation.evaluationType)
         let message: String = {
             switch evaluationStatus {
             case .passed:
-                return "Expected: \(expectedValue) is\(isNegated ? " not" : "") equal to received: \(actualValue)"
+                return "Received: \(actualValue) is\(isNegated ? " not" : "") greater than: \(expectedValue)"
             case .failed:
-                return "Expected: \(expectedValue)\(isNegated ? " not" : "") to be equal to received: \(actualValue)"
+                return "Expected the received value: \(actualValue)\(isNegated ? " not" : "") to be greater than: \(expectedValue), but it was\(isNegated ? "" : " not")"
             }
         }()
 
@@ -71,17 +64,17 @@ public struct ToBeEqual<ResultType: Equatable>: Matcher {
 }
 
 // MARK: - DSL
-public extension Expectation where ReturnType: Equatable {
-    /// Verifies whether the two values are equal.
+public extension Expectation where ReturnType: Comparable {
+    /// Verifies whether the actual value is greater than expected value.
     ///
-    /// See the ``ToBeEqual`` for more information.
+    /// See the ``ToBeGreaterThan`` for more information.
     ///
     /// - Parameters:
     ///     - expectedValue: Expected value.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeEqual(_ expectedValue: ReturnType, file: String = #filePath, line: UInt = #line) {
-        let matcher = ToBeEqual(expectation: self, expectedValue: expectedValue, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
+    func toBeGreaterThan(_ expectedValue: ReturnType, file: String = #filePath, line: UInt = #line) {
+        let matcher = ToBeGreaterThan(expectation: self, expectedValue: expectedValue, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)
     }

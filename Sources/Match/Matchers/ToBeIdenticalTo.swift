@@ -9,7 +9,6 @@ import Foundation
 
 /// Tests whether the two values are identical (share the same memory).
 ///
-///
 /// This matcher works with any type that conforms to the `AnyObject` protocol:
 /// ```swift
 ///final class Car {
