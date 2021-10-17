@@ -11,9 +11,9 @@ import Foundation
 ///
 /// This matcher works with any type that conforms to the `AnyObject` protocol:
 /// ```swift
-///final class Car {
-///   let color: String
-///}
+/// final class Car {
+///    let color: String
+/// }
 ///
 /// let car1 = Car(color: "red")
 /// let car2 = Car(color: "red")
