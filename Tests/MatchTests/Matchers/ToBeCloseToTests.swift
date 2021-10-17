@@ -20,7 +20,7 @@ final class ToBeCloseToTests: XCTestCase {
         mockedReporter = nil
     }
 
-    func testPositiveMatching() throws {
+    func testPositiveEvaluation() throws {
         XCTAssertEqual(
             makeMatcher(actualValue: 0, expectedValue: 0, precision: nil).evaluate().evaluationStatus,
             .passed,
@@ -52,7 +52,7 @@ final class ToBeCloseToTests: XCTestCase {
         )
     }
     
-    func testNegatedMatching() throws {
+    func testNegatedEvaluation() throws {
         XCTAssertEqual(
             makeMatcher(actualValue: 0, expectedValue: 0, precision: nil, evaluationType: .negated).evaluate().evaluationStatus,
             .failed,
