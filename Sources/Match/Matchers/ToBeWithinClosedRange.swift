@@ -8,9 +8,9 @@
 import Foundation
 /// Tests whether the actual value is within closed range.
 /// ```swift
-/// expect(15).toBeWithin(0..<10) // Fails
-/// expect(10).toBeWithin(0..<10) // Passes
-/// expect(7).toBeWithin(0..<10) // Passes
+/// expect(15).toBeWithin(0...10) // Fails
+/// expect(10).toBeWithin(0...10) // Passes
+/// expect(7).toBeWithin(0...10) // Passes
 /// ```
 ///
 public struct ToBeWithinClosedRange<ResultType: Comparable>: Matcher {

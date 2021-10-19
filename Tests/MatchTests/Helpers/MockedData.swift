@@ -9,6 +9,12 @@
 import XCTest
 
 enum MockedData {
+    enum Errors {}
+    enum Matchers {}
+}
+
+// MARK: - Mocked data
+extension MockedData {
     static func mockedExpectation<T>(value: T, testCase: XCTestCase? = nil, evaluationType: EvaluationType = .positive, environment: EnvironmentRepresentable = Environment.global) -> Expectation<T> {
         Expectation(expression: Expression(value), testCase: testCase, evaluationType: evaluationType, environment: Environment.global)
     }
@@ -20,10 +26,9 @@ enum MockedData {
     static func mockedSourceCodeLocation(file: String = "FileUnderTests.swift", line: UInt = 15) -> SourceCodeLocation {
          SourceCodeLocation(file: file, line: line)
     }
-    
-    enum Errors {}
 }
 
+// MARK: - Errors
 extension MockedData.Errors {
     enum NetworkingError: Error {
         case connection
