@@ -1,24 +1,24 @@
 //
-//  ToThrowErrorOfType.swift
+//  ToThrowError.swift
 //  Match
 //
 //  Created by Michal on 19/10/2021.
 //
 
-/// Tests whether the expression thrown an Error of expected type.
+/// Tests whether the expression thrown an expected Error .
 ///
 /// ```swift
-///  expect({ try throwError(NetworkingError.server) }).toThrow(NetworkingError.self) // Passes
-///  expect({ try throwError(HttpError.badRequest) }).toThrow(NetworkingError.self) // Fails
+///  expect({ try throwError(NetworkingError.server) }).toThrow(NetworkingError.server) // Passes
+///  expect({ try throwError(HttpError.badRequest) }).toThrow(HttpError.notFound) // Fails
 /// ```
 ///
-public struct ToThrowErrorOfType<ResultType, ExpectedError: Error>: Matcher {
+public struct ToThrowError<ResultType, ExpectedError: Error>: Matcher {
     public let matcherName: String = "toThrow"
     
     public let expectation: Expectation<ResultType>
     
     /// Expected error type.
-    public let expectedErrorType: ExpectedError.Type
+    public let expectedError: ExpectedError
     
     public let sourceCodeLocation: SourceCodeLocation
     
@@ -26,11 +26,11 @@ public struct ToThrowErrorOfType<ResultType, ExpectedError: Error>: Matcher {
     ///
     /// - Parameters:
     ///     - expectation: Expectation used to evaluate actual value.
-    ///     - expectedErrorType: Expected error type.
+    ///     - expectedError: Expected error.
     ///     - sourceCodeLocation: The location in the Source Code where evaluation was triggered.
-    public init(expectation: Expectation<ResultType>, expectedErrorType: ExpectedError.Type, sourceCodeLocation: SourceCodeLocation) {
+    public init(expectation: Expectation<ResultType>, expectedError: ExpectedError, sourceCodeLocation: SourceCodeLocation) {
         self.expectation = expectation
-        self.expectedErrorType = expectedErrorType
+        self.expectedError = expectedError
         self.sourceCodeLocation = sourceCodeLocation
     }
     
@@ -40,7 +40,7 @@ public struct ToThrowErrorOfType<ResultType, ExpectedError: Error>: Matcher {
                 _ = try expectation.expression.evaluate()
                 return false
             } catch {
-                return (error as? ExpectedError) != nil
+                return error._domain == expectedError._domain && error._code == expectedError._code
             }
         }()
         
@@ -48,9 +48,9 @@ public struct ToThrowErrorOfType<ResultType, ExpectedError: Error>: Matcher {
         let message: String = {
             switch evaluationStatus {
             case .passed:
-                return "Did\(isNegated ? " not" : "") throw an error of type of: \(expectedErrorType)"
+                return "Did\(isNegated ? " not" : "") throw: \(expectedError)"
             case .failed:
-                return "Expected\(isNegated ? " not" : "") to throw an error of type of: \(expectedErrorType), but \(isNegated ? "did" : "did not")"
+                return "Expected\(isNegated ? " not" : "") to throw: \(expectedError), but \(isNegated ? "did" : "did not")"
             }
         }()
 
@@ -64,16 +64,16 @@ public struct ToThrowErrorOfType<ResultType, ExpectedError: Error>: Matcher {
 
 // MARK: - DSL
 public extension Expectation {
-    /// Verifies whether the expression thrown an Error of expected type..
+    /// Verifies whether the expression thrown an expected Error.
     ///
-    /// See the ``ToThrowErrorOfType`` for more information.
+    /// See the ``ToThrowError`` for more information.
     ///
     /// - Parameters:
-    ///     - expectedErrorType: Expected error type.
+    ///     - expectedError: Expected error.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toThrow<ExpectedError: Error>(_ expectedErrorType: ExpectedError.Type, file: String = #filePath, line: UInt = #line) {
-        let matcher = ToThrowErrorOfType(expectation: self, expectedErrorType: expectedErrorType, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
+    func toThrow<ExpectedError: Error>(_ expectedError: ExpectedError, file: String = #filePath, line: UInt = #line) {
+        let matcher = ToThrowError(expectation: self, expectedError: expectedError, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)
     }
