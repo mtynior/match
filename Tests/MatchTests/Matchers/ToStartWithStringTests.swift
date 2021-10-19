@@ -42,13 +42,13 @@ final class ToStartWithStringTests: XCTestCase {
         XCTAssertEqual(
             makeMatcher(actualValue: "Anakin Skywalker", expectedSubstring: "AKi").evaluate().evaluationStatus,
             .failed,
-            "ToStartWithString should be evaluated as `failed` when a String does not start a substring"
+            "ToStartWithString should be evaluated as `failed` when a String does not start with a substring"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: "Anakin Skywalker", expectedSubstring: "Vader", comparisonOptions: .caseInsensitive).evaluate().evaluationStatus,
             .failed,
-            "ToStartWithString should be evaluated as `failed` when a String does not start a substring and case sensitivity is ignored"
+            "ToStartWithString should be evaluated as `failed` when a String does not start with a substring and case sensitivity is ignored"
         )
     }
     
@@ -72,21 +72,15 @@ final class ToStartWithStringTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            makeMatcher(actualValue: "Anakin Skywalker", expectedSubstring: "AKi", evaluationType: .negated).evaluate().evaluationStatus,
-            .passed,
-            "Negated ToStartWithString should be evaluated as `passed` when a String does not start a substring"
-        )
-        
-        XCTAssertEqual(
             makeMatcher(actualValue: "Anakin Skywalker", expectedSubstring: "Vader", evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "Negated ToStartWithString should be evaluated as `passed` when a String does not start a substring"
+            "Negated ToStartWithString should be evaluated as `passed` when a String does not start with a substring"
         )
         
         XCTAssertEqual(
             makeMatcher(actualValue: "Anakin Skywalker", expectedSubstring: "Vader", comparisonOptions: .caseInsensitive, evaluationType: .negated).evaluate().evaluationStatus,
             .passed,
-            "Negated ToStartWithString should be evaluated as `passed` when a String does not start a substring and case sensitivity is ignored"
+            "Negated ToStartWithString should be evaluated as `passed` when a String does not start with a substring and case sensitivity is ignored"
         )
     }
         
