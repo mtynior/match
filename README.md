@@ -76,7 +76,7 @@ final class SumTests: XCTestCase {
         let actualValue = sum(2, 3)
 
         // then
-        expect(actualValue).toEqual(expectedValue) // Passes: "Expected: 5 is equal to received: 5"
+        expect(actualValue).toBeEqual(expectedValue) // Passes: "Expected: 5 is equal to received: 5"
     }
 }
 ```
@@ -105,7 +105,7 @@ final class SumTests: XCTestCase {
         let actualValue = sum(2, 3)
 
         // then
-        expect(actualValue).toEqual(expectedValue) // Fails: "Expected: 5 to be equal to received: 6"
+        expect(actualValue).toBeEqual(expectedValue) // Fails: "Expected: 5 to be equal to received: 6"
     }
 }
 ```
