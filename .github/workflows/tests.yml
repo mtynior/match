@@ -1,4 +1,4 @@
-name: Verify Code Quality
+name: Run tests
 
 on:
   push:
