@@ -1,0 +1,17 @@
+name: Code Lint
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/codelint.yml'
+      - '.swiftlint.yml'
+      - '**/*.swift'
+
+jobs:
+  SwiftLint:
+    runs-on: macos-11
+
+    steps:
+     - uses: actions/checkout@v2
+     - name: SwiftLint
+       uses: norio-nomura/action-swiftlint@3.2.1
