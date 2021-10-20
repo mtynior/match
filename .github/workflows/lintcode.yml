@@ -1,11 +1,6 @@
-name: Code Lint
+name: Lint Code
 
-on:
-  pull_request:
-    paths:
-      - '.github/workflows/codelint.yml'
-      - '.swiftlint.yml'
-      - '**/*.swift'
+on: pull_request
 
 jobs:
   SwiftLint:
