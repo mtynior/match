@@ -59,7 +59,7 @@ func sum(_ a: Int, _ b: Int) -> Int {
     a + b
 }
 ```
-
+### Writing tests
 Not we can test our function using XCTest Framework and the Match:
 ```swift
 import XCTest
