@@ -51,6 +51,7 @@ Open your project in Xcode, then:
 5. Select the Test Target (If you have multiple test targets, you can add the depency manuly from Xcode )
 6. Confirm selection by clicking on Add Package.
 
+### Writing tests
 Now, when we have library integrated with our project, let's write some tests.
 
 Imagen that we have a function that adds two numbers:
@@ -59,7 +60,7 @@ func sum(_ a: Int, _ b: Int) -> Int {
     a + b
 }
 ```
-### Writing tests
+
 Not we can test our function using XCTest Framework and the Match:
 ```swift
 import XCTest
