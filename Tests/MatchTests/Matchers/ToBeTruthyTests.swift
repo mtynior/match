@@ -92,7 +92,7 @@ final class ToBeTruthyTests: XCTestCase {
         }
        
         // when
-        expect("".isEmpty).toBeFalsy()
+        expect("".isEmpty).toBeTruthy()
         
         // then
         waitForExpectations(timeout: 5)

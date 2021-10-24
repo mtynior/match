@@ -138,7 +138,7 @@ final class ToBeEqualStringTests: XCTestCase {
         }
        
         // when
-        expect("Luke").toBeEqual("Sith")
+        expect("Luke").toBeEqual("luke", comparisonOptions: .caseSensitive)
         
         // then
         waitForExpectations(timeout: 5)

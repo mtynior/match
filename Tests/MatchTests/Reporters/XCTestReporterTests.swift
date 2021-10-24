@@ -9,6 +9,30 @@ import XCTest
 @testable import Match
 
 final class XCTestReporterTests: XCTestCase {
+    func testReportResultIgnorePassedEvaluationResults() {
+        // given
+        let mockedTestCase = MockedXCTestCase()
+        mockedTestCase.onRecord = { _ in
+            // then
+            XCTFail("XCTestReporter should ignore EvaluationResult marked as `passed`")
+        }
+        
+        // and
+        let evaluationResult = EvaluationResult(
+            message: "Expected value: 5 is not greater than received: 88",
+            evaluationStatus: .passed,
+            evaluationContext: EvaluationContext(
+                testCase: mockedTestCase,
+                matcherName: "testMatcher",
+                sourceCodeLocation: MockedData.mockedSourceCodeLocation()
+            )
+        )
+        
+        // when
+        let reporter = XCTestReporter()
+        reporter.reportResult(evaluationResult)
+    }
+    
     func testReportResultWithTestCase() {
         // given
         let expectedMessage = "Expected value: 5 is not greater than received: 88"
@@ -61,7 +85,7 @@ final class XCTestReporterTests: XCTestCase {
         options.issueMatcher = { issue in
             return issue.type == .assertionFailure && issue.compactDescription.contains(expectedMessage)
         }
-            
+        
         // then
         XCTExpectFailure("Should report failure", options: options) {
             // when
