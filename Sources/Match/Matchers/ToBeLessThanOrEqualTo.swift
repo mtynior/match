@@ -11,9 +11,9 @@ import Foundation
 ///
 /// This matcher works with any type that conforms to the `Comparable` protocol:
 /// ```swift
-/// expect(2).ToBeLessThan(5) // Passes
-/// expect(2).toBeLessThan(2) // Passes
-/// expect(5).toBeLessThan(2) // Fails
+/// expect(2).toBeLessThanOrEqualTo(5) // Passes
+/// expect(2).toBeLessThanOrEqualTo(2) // Passes
+/// expect(5).toBeLessThanOrEqualTo(2) // Fails
 /// ```
 ///
 public struct ToBeLessThanOrEqualTo<ResultType: Comparable>: Matcher {

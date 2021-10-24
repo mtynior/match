@@ -21,7 +21,7 @@ import Foundation
 /// expect([1, 2, 3]).toBeEqual([1, 2, 3]) // Passes
 /// ```
 ///
-///  When comparing `FloatingPoint` numbers use the ``Expectation/toBeCloseTo(_:within:file:line:)`` instead!
+/// When comparing `FloatingPoint` numbers use the ``Expectation/toBeCloseTo(_:within:file:line:)`` instead!
 ///
 public struct ToBeEqual<ResultType: Equatable>: Matcher {
     public let matcherName: String = "toBeEqual"

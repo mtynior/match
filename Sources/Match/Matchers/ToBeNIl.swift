@@ -8,9 +8,9 @@
 /// Tests whether the value is `nil`.
 ///
 /// ```swift
-/// let optional: String = nil
+/// let optional: String? = nil
 /// expect(optional).toBeNil() // Passes
-/// expect(optional).not.toBeFalsy() // Fails
+/// expect(optional).not.toBeNil() // Fails
 /// ```
 ///
 public struct ToBeNil<ResultType>: Matcher {

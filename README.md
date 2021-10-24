@@ -10,10 +10,10 @@
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" />
 </p>
 
-## Geting started 
+## Getting started 
 
 ### Swift Package Manager
-You can add Match to your project by adding it as a depency in your Package.swift file:
+You can add Match to your project by adding it as a dependency in your Package.swift file:
 ```swift
 // swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
@@ -46,15 +46,15 @@ let package = Package(
 Open your project in Xcode, then:
 1. Click File -> Add Packages,
 2. In the search bar type: `https://github.com/mtynior/match.git` and press `Enter`,
-3. Once Xcode finds the library, set Dependecy rule to `Up to next major version`,
+3. Once Xcode finds the library, set Dependency rule to `Up to next major version`,
 4. Click Add Package,
-5. Select the Test Target (If you have multiple test targets, you can add the depency manuly from Xcode )
+5. Select the Test Target (If you have multiple test targets, you can add the dependency manually from Xcode )
 6. Confirm selection by clicking on Add Package.
 
 ### Writing tests
 Now, when we have library integrated with our project, let's write some tests.
 
-Imagen that we have a function that adds two numbers:
+Imagine that we have a function that adds two numbers:
 ```swift
 func sum(_ a: Int, _ b: Int) -> Int {
     a + b
@@ -81,7 +81,7 @@ final class SumTests: XCTestCase {
 }
 ```
 
-If we implemented the `sum` function corectly the test above will pass.
+If we implemented the `sum` function correctly the test above will pass.
 
 But let's see what will happen when we make a mistake in the `sum` implementation:
 ```swift
@@ -110,7 +110,7 @@ final class SumTests: XCTestCase {
 }
 ```
 
-That's it. You can check how to use the rest of Matchers by analizing the [unit tests](https://github.com/mtynior/match/tree/develop/Tests/MatchTests/Matchers).
+That's it. Now, check how to use the rest of [Matchers](./Sources/Match/Match.docc/Matchers.md).
 
 ## Credits
 Icon is made by [Freepik](https://www.freepik.com) and was available at [FlatIcon](https://www.flaticon.com/free-icon/matches_208364).

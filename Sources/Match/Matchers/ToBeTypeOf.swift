@@ -13,7 +13,7 @@ import Foundation
 /// expect("Anakin").toBeTypeOf(Int.self) // Fails
 /// expect("Anakin").toBeTypeOf(String.self) // Passes
 /// ```
-/// This matcher also whether a value or an object conforms to protocol, and can verify the inheritance:
+/// This matcher also verifies whether a value or an object conforms to protocol, and can verify the inheritance:
 /// ```swift
 /// protocol Fighter {}
 /// class TieFighter: Fighter {}
