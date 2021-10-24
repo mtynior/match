@@ -1,4 +1,4 @@
-name: Run Tests (Current Environment) 
+name: Test Package (Production ENV) 
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  run_tests:
+  test_package:
     runs-on: macos-11
 
     steps:
