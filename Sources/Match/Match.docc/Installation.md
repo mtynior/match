@@ -27,7 +27,7 @@ let package = Package(
 ```
 
 ### Xcode
-![Xcode Match setup](https://res.cloudinary.com/mtynior/image/upload/v1634748957/development/match_xcode_oleolc.jpg)
+![Xcode Match setup](xcode_installation)
 
 
 Open your project in Xcode, then:
