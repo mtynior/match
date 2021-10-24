@@ -7,6 +7,12 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/language-Swift-orange" />
+  <a href="https://github.com/mtynior/match/actions/workflows/run_tests_current_env.yml">
+    <img src="https://github.com/mtynior/match/actions/workflows/run_tests_current_env.yml/badge.svg?branch=main"/>
+  </a>
+  <a href="https://codecov.io/gh/mtynior/match">
+    <img src="https://codecov.io/gh/mtynior/match/branch/main/graph/badge.svg?token=56Q5BQF40Z"/>
+  </a>  
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" />
 </p>
 
