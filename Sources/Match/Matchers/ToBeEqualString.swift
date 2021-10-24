@@ -1,25 +1,27 @@
 //
-//  ToStartWithString.swift
+//  ToBeEqualString.swift
 //  Match
 //
-//  Created by Michal on 19/10/2021.
+//  Created by Michal on 24/10/2021.
 //
 
-/// Tests whether a String starts the expected substring.
+import Foundation
+
+/// Tests whether the two Strings are equal.
 ///
 /// ```swift
-/// expect("Anakin").toStartWith("Ana") // Passes
-/// expect("Anakin").toStartWith("ana") // Fails
-/// expect("Anakin").toStartWith("ana", comparisonOptions: .caseInsensitive) // Passes
+/// expect("Anakin").toBeEqual("Vader") // Fails
+/// expect("Anakin").toBeEqual("Anakin") // Passes
+/// expect("Anakin").toBeEqual("anakin") // Fails
+/// expect("Anakin").toBeEqual("anakin", comparisonOptions: .caseInsensitive) // Passes
 /// ```
-///
-public struct ToStartWithString<ResultType: StringProtocol>: Matcher {
-    public let matcherName: String = "toStartWith"
+public struct ToBeEqualString<ResultType: StringProtocol>: Matcher {
+    public let matcherName: String = "toBeEqual"
     
     public let expectation: Expectation<ResultType>
     
     /// Expected value.
-    public let expectedSubstring: ResultType
+    public let expectedValue: ResultType
     
     /// Type of comparison.
     public let comparisonOptions: StringComparisonOptions
@@ -30,12 +32,11 @@ public struct ToStartWithString<ResultType: StringProtocol>: Matcher {
     ///
     /// - Parameters:
     ///     - expectation: Expectation used to evaluate actual value.
-    ///     - expectedSubstring: Expected value.
-    ///     - comparisonOptions: Type of comparison.
+    ///     - expectedValue: Expected value.
     ///     - sourceCodeLocation: The location in the Source Code where evaluation was triggered.
-    public init(expectation: Expectation<ResultType>, expectedSubstring: ResultType, comparisonOptions: StringComparisonOptions, sourceCodeLocation: SourceCodeLocation) {
+    public init(expectation: Expectation<ResultType>, expectedValue: ResultType, comparisonOptions: StringComparisonOptions, sourceCodeLocation: SourceCodeLocation) {
         self.expectation = expectation
-        self.expectedSubstring = expectedSubstring
+        self.expectedValue = expectedValue
         self.comparisonOptions = comparisonOptions
         self.sourceCodeLocation = sourceCodeLocation
     }
@@ -45,22 +46,22 @@ public struct ToStartWithString<ResultType: StringProtocol>: Matcher {
             return EvaluationResult(message: "Could not evaluate the expression", evaluationStatus: .failed, evaluationContext: evaluationContext)
         }
         
-        let doesContain: Bool = {
+        let isEqual: Bool = {
             switch comparisonOptions {
             case .caseSensitive:
-                return actualValue.hasPrefix(expectedSubstring)
+                return actualValue == expectedValue
             case .caseInsensitive:
-                return actualValue.lowercased().hasPrefix(expectedSubstring.lowercased())
+                return actualValue.lowercased() == expectedValue.lowercased()
             }
         }()
         
-        let evaluationStatus = EvaluationStatus(boolValue: doesContain, evaluationType: expectation.evaluationType)
+        let evaluationStatus = EvaluationStatus(boolValue: isEqual, evaluationType: expectation.evaluationType)
         let message: String = {
             switch evaluationStatus {
             case .passed:
-                return "Received: \(actualValue) does\(isNegated ? " not" : "") start with (\(comparisonOptions)): \(expectedSubstring)"
+                return "Expected: \(expectedValue) is\(isNegated ? " not" : "") equal (\(comparisonOptions)) to received: \(actualValue)"
             case .failed:
-                return "Expected the: \(actualValue)\(isNegated ? " not" : "") to start with (\(comparisonOptions)): \(expectedSubstring), but it does\(isNegated ? "" : " not")"
+                return "Expected: \(expectedValue)\(isNegated ? " not" : "") to be equal (\(comparisonOptions)) to received: \(actualValue)"
             }
         }()
 
@@ -74,19 +75,19 @@ public struct ToStartWithString<ResultType: StringProtocol>: Matcher {
 
 // MARK: - DSL
 public extension Expectation where ReturnType: StringProtocol {
-    /// Verifies whether a String starts with the expected substring.
+    /// Verifies whether the String values are equal.
     ///
-    /// See the ``ToStartWithString`` for more information.
+    /// See the ``ToBeEqual`` for more information.
     ///
     /// - Parameters:
-    ///     - expectedSubstring: Expected substring.
+    ///     - expectedValue: Expected value.
     ///     - comparisonOptions: Type of comparison. By default, the comparison is case sensitive.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toStartWith(_ expectedSubstring: ReturnType, comparisonOptions: StringComparisonOptions = .caseSensitive, file: String = #filePath, line: UInt = #line) {
-        let matcher = ToStartWithString(
+    func toBeEqual(_ expectedValue: ReturnType, comparisonOptions: StringComparisonOptions = .caseSensitive, file: String = #filePath, line: UInt = #line) {
+        let matcher = ToBeEqualString(
             expectation: self,
-            expectedSubstring: expectedSubstring,
+            expectedValue: expectedValue,
             comparisonOptions: comparisonOptions,
             sourceCodeLocation: SourceCodeLocation(file: file, line: line)
         )

@@ -21,6 +21,7 @@ public struct ToEndWithString<ResultType: StringProtocol>: Matcher {
     /// Expected value.
     public let expectedSubstring: ResultType
     
+    /// Type of comparison.
     public let comparisonOptions: StringComparisonOptions
         
     public let sourceCodeLocation: SourceCodeLocation

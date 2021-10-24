@@ -9,11 +9,13 @@ This matcher works with any type that conforms to the `Equatable` protocol:
 expect(2).toBeEqual(5) // Fails
 expect(2).toBeEqual(2) // Passes
 
-expect("Anakin").toBeEqual("Vader") // Fails
-expect("Anakin").toBeEqual("Anakin") // Passes
-
 expect([1, 2, 3]).toBeEqual([3, 2, 1]) // Fails
 expect([1, 2, 3]).toBeEqual([1, 2, 3]) // Passes
+
+expect("Anakin").toBeEqual("Vader") // Fails
+expect("Anakin").toBeEqual("Anakin") // Passes
+expect("Anakin").toBeEqual("anakin") // Fails
+expect("Anakin").toBeEqual("anakin", comparisonOptions: .caseInsensitive) // Passes
 ```
 
 When comparing `FloatingPoint` numbers use the `toBeCloseTo()` instead.

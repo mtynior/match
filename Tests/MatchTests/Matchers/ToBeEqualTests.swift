@@ -34,18 +34,6 @@ final class ToBeEqualTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            makeMatcher(actualValue: "Anakin", expectedValue: "Anakin").evaluate().evaluationStatus,
-            .passed,
-            "ToBeEqual should be evaluated as `passed` for equal Strings"
-        )
-        
-        XCTAssertEqual(
-            makeMatcher(actualValue: "Anakin", expectedValue: "anakin").evaluate().evaluationStatus,
-            .failed,
-            "ToBeEqual should be evaluated as `failed` for not equal Strings"
-        )
-        
-        XCTAssertEqual(
             makeMatcher(actualValue: [1, 2, 3], expectedValue: [1, 2, 3]).evaluate().evaluationStatus,
             .passed,
             "ToBeEqual should be evaluated as `passed` for equal Arrays"
@@ -101,7 +89,7 @@ final class ToBeEqualTests: XCTestCase {
         let expectedResult = "toBeEqual"
        
         // when
-        let actualMatcher = makeMatcher(actualValue: "Anakin", expectedValue: "Vader")
+        let actualMatcher = makeMatcher(actualValue: 2, expectedValue: 4)
         
         // then
         XCTAssertEqual(actualMatcher.matcherName, expectedResult)
@@ -109,14 +97,14 @@ final class ToBeEqualTests: XCTestCase {
     
     func testReportEvaluationResult() throws {
         // given
-        let reportExpectation = expectation(description: "toBeEmpty() should report the evaluation result")
+        let reportExpectation = expectation(description: "toBeEqual() should report the evaluation result")
         
         mockedReporter.onReportResult = { _ in
             reportExpectation.fulfill()
         }
        
         // when
-        expect("Luke").toBeEqual("Sith")
+        expect(3).toBeEqual(6)
         
         // then
         waitForExpectations(timeout: 5)

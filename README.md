@@ -110,7 +110,7 @@ final class SumTests: XCTestCase {
 }
 ```
 
-That's it. Now, check how to use the rest of the [Matchers](./Sources/Match/Match.docc/Matchers.md) and start testig.
+That's it. Now, check how to use the rest of the [Matchers](./Sources/Match/Docs/Match.docc/Matchers.md) and start testig.
 
 ## Credits
 Icon is made by [Freepik](https://www.freepik.com) and was available at [FlatIcon](https://www.flaticon.com/free-icon/matches_208364).
