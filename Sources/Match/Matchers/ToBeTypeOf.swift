@@ -81,7 +81,7 @@ public extension Expectation {
     ///     - expectedType: Expected type.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeTypeOf<ExpectedType>(_ expectedType: ExpectedType.Type, file: String = #filePath, line: UInt = #line) {
+    func toBeTypeOf<ExpectedType>(_ expectedType: ExpectedType.Type, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeTypeOf(expectation: self, expectedType: expectedType, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

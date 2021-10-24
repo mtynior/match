@@ -23,7 +23,7 @@ extension MockedData {
         Expectation(expression: Expression(expression), testCase: testCase, evaluationType: evaluationType, environment: Environment.global)
     }
     
-    static func mockedSourceCodeLocation(file: String = "FileUnderTests.swift", line: UInt = 15) -> SourceCodeLocation {
+    static func mockedSourceCodeLocation(file: StaticString = "FileUnderTests.swift", line: UInt = 15) -> SourceCodeLocation {
          SourceCodeLocation(file: file, line: line)
     }
 }

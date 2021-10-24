@@ -90,7 +90,7 @@ public extension Expectation where ReturnType: FloatingPoint {
     ///                  If explicit precision is not provided, the default one (``ToBeCloseTo/defaultPrecision``) is used.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeCloseTo(_ expectedValue: ReturnType, within precision: ReturnType = ToBeCloseTo.defaultPrecision, file: String = #filePath, line: UInt = #line) {
+    func toBeCloseTo(_ expectedValue: ReturnType, within precision: ReturnType = ToBeCloseTo.defaultPrecision, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeCloseTo(expectation: self, expectedValue: expectedValue, precision: precision, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

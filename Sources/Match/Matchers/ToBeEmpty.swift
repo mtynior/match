@@ -69,7 +69,7 @@ public extension Expectation where ReturnType: Collection {
     /// - Parameters:
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeEmpty(file: String = #filePath, line: UInt = #line) {
+    func toBeEmpty(file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeEmpty(expectation: self, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

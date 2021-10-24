@@ -73,7 +73,7 @@ public extension Expectation where ReturnType: Collection {
     ///     - expectedCount: Expected count.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toHaveCount(_ expectedCount: Int, file: String = #filePath, line: UInt = #line) {
+    func toHaveCount(_ expectedCount: Int, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToHaveCount(expectation: self, expectedCount: expectedCount, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

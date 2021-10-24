@@ -68,7 +68,7 @@ public extension Expectation where ReturnType == Bool {
     /// - Parameters:
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeTruthy(file: String = #filePath, line: UInt = #line) {
+    func toBeTruthy(file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeTruthy(expectation: self, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

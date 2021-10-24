@@ -10,7 +10,7 @@ import Foundation
 /// A Structure that contains a location in the Source Code
 public struct SourceCodeLocation {
     /// The file where evaluation was triggered.
-    public let file: String
+    public let file: StaticString
     
     /// The line number where the evaluation was triggered.
     public let line: UInt

@@ -73,7 +73,7 @@ public extension Expectation where ReturnType: Comparable {
     ///     - expectedValue: Expected value.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeLessThan(_ expectedValue: ReturnType, file: String = #filePath, line: UInt = #line) {
+    func toBeLessThan(_ expectedValue: ReturnType, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeLessThan(expectation: self, expectedValue: expectedValue, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

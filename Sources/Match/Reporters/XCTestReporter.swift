@@ -21,7 +21,11 @@ public final class XCTestReporter: ResultReporter {
         }
  
         guard let testCase = evaluationResult.evaluationContext.testCase else {
-            XCTFail(evaluationResult.message)
+            XCTFail(
+                evaluationResult.message,
+                file: evaluationResult.evaluationContext.sourceCodeLocation.file,
+                line: evaluationResult.evaluationContext.sourceCodeLocation.line
+            )
             return
         }
         

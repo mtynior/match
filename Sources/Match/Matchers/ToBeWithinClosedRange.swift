@@ -70,7 +70,7 @@ public extension Expectation where ReturnType: Comparable {
     ///     - expectedRange: Expected range.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeWithin(_ expectedRange: ClosedRange<ReturnType>, file: String = #filePath, line: UInt = #line) {
+    func toBeWithin(_ expectedRange: ClosedRange<ReturnType>, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeWithinClosedRange(expectation: self, expectedRange: expectedRange, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

@@ -72,7 +72,7 @@ public extension Expectation {
     ///     - expectedErrorType: Expected error type.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toThrow<ExpectedError: Error>(_ expectedErrorType: ExpectedError.Type, file: String = #filePath, line: UInt = #line) {
+    func toThrow<ExpectedError: Error>(_ expectedErrorType: ExpectedError.Type, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToThrowErrorOfType(expectation: self, expectedErrorType: expectedErrorType, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

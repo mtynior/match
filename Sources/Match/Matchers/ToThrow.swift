@@ -66,7 +66,7 @@ public extension Expectation {
     /// - Parameters:
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toThrow(file: String = #filePath, line: UInt = #line) {
+    func toThrow(file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToThrow<ReturnType>(expectation: self, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

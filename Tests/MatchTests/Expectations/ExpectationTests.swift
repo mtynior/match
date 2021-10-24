@@ -9,7 +9,7 @@ import XCTest
 @testable import Match
 
 final class ExpectationTests: XCTestCase {
-    func  testCreateExpectation() {
+    func testCreateExpectation() {
         // given
         let expectedValue = 3
         let testCase = XCTestCase()

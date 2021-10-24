@@ -71,7 +71,7 @@ public extension Expectation where ReturnType: StringProtocol {
     ///     - regex: Regex.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toMatch(_ regex: String, file: String = #filePath, line: UInt = #line) {
+    func toMatch(_ regex: String, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToMatch(expectation: self, regex: regex, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)

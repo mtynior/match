@@ -84,7 +84,7 @@ public extension Expectation where ReturnType: StringProtocol {
     ///     - comparisonOptions: Type of comparison. By default, the comparison is case sensitive.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toBeEqual(_ expectedValue: ReturnType, comparisonOptions: StringComparisonOptions = .caseSensitive, file: String = #filePath, line: UInt = #line) {
+    func toBeEqual(_ expectedValue: ReturnType, comparisonOptions: StringComparisonOptions = .caseSensitive, file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToBeEqualString(
             expectation: self,
             expectedValue: expectedValue,

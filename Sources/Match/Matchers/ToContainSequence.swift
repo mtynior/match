@@ -79,7 +79,7 @@ public extension Expectation where ReturnType: Sequence, ReturnType.Element: Equ
     ///     - comparisonOptions: Type of comparison. By default, the comparison is case sensitive.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toContain(_ expectedValues: [ReturnType.Element], file: String = #filePath, line: UInt = #line) {
+    func toContain(_ expectedValues: [ReturnType.Element], file: StaticString = #filePath, line: UInt = #line) {
         let matcher = ToContainSequence(expectation: self, expectedValues: expectedValues, sourceCodeLocation: SourceCodeLocation(file: file, line: line))
         let evaluationResult = matcher.evaluate()
         self.environment.resultReporter.reportResult(evaluationResult)
@@ -94,7 +94,7 @@ public extension Expectation where ReturnType: Sequence, ReturnType.Element: Equ
     ///     - comparisonOptions: Type of comparison. By default, the comparison is case sensitive.
     ///     - file: The file where evaluation was triggered.
     ///     - line: The line number where the evaluation was triggered.
-    func toContain(_ expectedValue: ReturnType.Element, file: String = #filePath, line: UInt = #line) {
+    func toContain(_ expectedValue: ReturnType.Element, file: StaticString = #filePath, line: UInt = #line) {
        toContain([expectedValue], file: file, line: line)
     }
 }
